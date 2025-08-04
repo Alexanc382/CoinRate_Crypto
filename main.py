@@ -3,6 +3,7 @@ from tkinter import ttk
 from tkinter import messagebox as mb
 import requests
 
+
 def get_base_currency(event=None):  # получаем данные из первого бокса
     base_currency = base_combobox.get()
     # print(base_currency)
@@ -26,12 +27,12 @@ def exchange(): # получаем данные из API при нажатии �
             data = response.json() # получили файл в формате json в виде словаря
             value_1 = list(data.values())[0]  # берём первое значение всего словаря
             value_2 = list(value_1.values())[0]  # берём первое значение внутреннего словаря
-            print(value_1) # показали результат значения ключа
-            print(value_2)
-            mb.showinfo(title='Результат', message=f'1 {currencies[base_currency]} равен {value_2} {vs_currencies[quote_currency]}')
+            formatted_value = f'{value_2:,}'.replace(',', ' ')
+            mb.showinfo(title='Результат', message=f'1 {currencies[base_currency]} равен {formatted_value} {vs_currencies[quote_currency]}')
         except Exception as e:
             print(e)
-
+    else:
+        mb.showerror(title='Ошибка', message='Не выбрана валюта')
 
 
 currencies = {
@@ -49,31 +50,29 @@ vs_currencies = {
     'rub': 'Российский рубль'
 }
 
-
 window = Tk()
 window.title('Курсы криптовалют')
 # размер окна и параметры его отображения(посередине экрана)
 screenwidth = window.winfo_screenwidth()
 screenheight = window.winfo_screenheight()
-width_position = screenwidth // 2 - 200
-height_position = screenheight // 2 - 230
-window.geometry(f'400x460+{width_position}+{height_position}')
-
+width_position = screenwidth // 2 - 150
+height_position = screenheight // 2 - 150
+window.geometry(f'300x300+{width_position}+{height_position}')
 
 label_base = ttk.Label(text='Базовая валюта')
-label_base.grid()
+label_base.grid(row=1, column=1,padx=80, pady=20)
 base_combobox = ttk.Combobox(window, values=list(currencies.keys()))
-base_combobox.grid()
+base_combobox.grid(row=2,column=1,padx=80, pady=20)
 base_combobox.bind('<<ComboboxSelected>>', get_base_currency)
 
-
 label_quote = ttk.Label(text='Целевая валюта')
-label_quote.grid()
+label_quote.grid(row=3,column=1,padx=80, pady=20)
 quote_combobox = ttk.Combobox(window, values=list(vs_currencies.keys()))
-quote_combobox.grid()
+quote_combobox.grid(row=4,column=1,padx=80, pady=20)
 quote_combobox.bind('<<ComboboxSelected>>', get_quote_currency)
 
 but_result = ttk.Button(text='Получить курс валюты', command=exchange)
-but_result.grid()
+but_result.grid(row=5,column=1,padx=80, pady=20)
+
 
 window.mainloop()
