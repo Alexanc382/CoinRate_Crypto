@@ -3,6 +3,23 @@ from tkinter import ttk
 from tkinter import messagebox as mb
 import requests
 
+
+currencies = {
+    'bitcoin': 'Биткоин',
+    'ethereum': 'Эфириум'
+}
+vs_currencies = {
+    'usd': 'Доллар США',
+    'eur': 'Евро',
+    'jpy': 'Японская иена',
+    'gbp': 'Фунт стерлингов',
+    'cad': 'Канадский доллар',
+    'chf': 'Швейцарский франк',
+    'cny': 'Китайский юань',
+    'rub': 'Российский рубль'
+}
+
+
 window = Tk()
 window.title('Курсы криптовалют')
 # размер окна и параметры его отображения(посередине экрана)
