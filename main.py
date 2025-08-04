@@ -3,6 +3,18 @@ from tkinter import ttk
 from tkinter import messagebox as mb
 import requests
 
+def get_base_currency():
+
+
+
+
+
+def get_quote_currency():
+
+
+
+
+
 
 currencies = {
     'bitcoin': 'Биткоин',
@@ -31,14 +43,14 @@ window.geometry(f'400x460+{width_position}+{height_position}')
 
 
 label_base = ttk.Label(text='Базовая валюта').grid()
-base_combobox = ttk.Combobox(window, values=)
+base_combobox = ttk.Combobox(window, values=list(currencies.keys()))
 base_combobox.grid()
-base_combobox.bind('<<ComboboxSelected>>')
+base_combobox.bind('<<ComboboxSelected>>', get_base_currency)
 
 
 label_quote = ttk.Label(text='Целевая валюта').grid()
-quote_combobox = ttk.Combobox(window, values=)
+quote_combobox = ttk.Combobox(window, values=list(vs_currencies.keys()))
 quote_combobox.grid()
-quote_combobox.bind('<<ComboboxSelected>>')
+quote_combobox.bind('<<ComboboxSelected>>', get_quote_currency)
 
 but_result = ttk.Button(text='Получить курс валюты')
