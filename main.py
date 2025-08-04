@@ -3,17 +3,16 @@ from tkinter import ttk
 from tkinter import messagebox as mb
 import requests
 
-def get_base_currency():
+def get_base_currency(event):
+    base_currency = base_combobox.get()
+    print(base_currency)
+    return base_currency
 
 
-
-
-
-def get_quote_currency():
-
-
-
-
+def get_quote_currency(event):
+    quote_currency = quote_combobox.get()
+    print(quote_currency)
+    return quote_currency
 
 
 currencies = {
@@ -42,13 +41,15 @@ height_position = screenheight // 2 - 230
 window.geometry(f'400x460+{width_position}+{height_position}')
 
 
-label_base = ttk.Label(text='Базовая валюта').grid()
+label_base = ttk.Label(text='Базовая валюта')
+label_base.grid()
 base_combobox = ttk.Combobox(window, values=list(currencies.keys()))
 base_combobox.grid()
 base_combobox.bind('<<ComboboxSelected>>', get_base_currency)
 
 
-label_quote = ttk.Label(text='Целевая валюта').grid()
+label_quote = ttk.Label(text='Целевая валюта')
+label_quote.grid()
 quote_combobox = ttk.Combobox(window, values=list(vs_currencies.keys()))
 quote_combobox.grid()
 quote_combobox.bind('<<ComboboxSelected>>', get_quote_currency)
