@@ -15,6 +15,21 @@ def get_quote_currency(event):
     return quote_currency
 
 
+def exchange():
+    base_currency = get_base_currency()
+    quote_currency = get_quote_currency()
+    if base_currency and quote_currency:
+        try:
+            url = f'https://api.coingecko.com/api/v3/simple/price?vs_currencies={quote_currency}&ids={base_currency}'
+            response = requests.get(url)
+            response.raise_for_status()
+            data = response.json()
+            print(data["bitcoin"]["rub"])
+        except Exception as e:
+            print(e)
+
+
+
 currencies = {
     'bitcoin': 'Биткоин',
     'ethereum': 'Эфириум'
@@ -54,4 +69,7 @@ quote_combobox = ttk.Combobox(window, values=list(vs_currencies.keys()))
 quote_combobox.grid()
 quote_combobox.bind('<<ComboboxSelected>>', get_quote_currency)
 
-but_result = ttk.Button(text='Получить курс валюты')
+but_result = ttk.Button(text='Получить курс валюты', command=exchange)
+but_result.grid()
+
+window.mainloop()
