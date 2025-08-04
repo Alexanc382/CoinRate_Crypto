@@ -3,28 +3,32 @@ from tkinter import ttk
 from tkinter import messagebox as mb
 import requests
 
-def get_base_currency(event=None):
+def get_base_currency(event=None):  # получаем данные из первого бокса
     base_currency = base_combobox.get()
     # print(base_currency)
     return base_currency
 
 
-def get_quote_currency(event=None):
+def get_quote_currency(event=None): # получаем данные из второго бокса
     quote_currency = quote_combobox.get()
     # print(quote_currency)
     return quote_currency
 
 
-def exchange():
-    base_currency = get_base_currency()
-    quote_currency = get_quote_currency()
+def exchange(): # получаем данные из API при нажатии кнопки
+    base_currency = get_base_currency() # получили из первой функции get
+    quote_currency = get_quote_currency() # получили из второй функции get
     if base_currency and quote_currency:
         try:
             url = f'https://api.coingecko.com/api/v3/simple/price?vs_currencies={quote_currency}&ids={base_currency}'
             response = requests.get(url)
             response.raise_for_status()
-            data = response.json()
-            print(data["bitcoin"]["rub"])
+            data = response.json() # получили файл в формате json в виде словаря
+            value_1 = list(data.values())[0]  # берём первое значение всего словаря
+            value_2 = list(value_1.values())[0]  # берём первое значение внутреннего словаря
+            print(value_1) # показали результат значения ключа
+            print(value_2)
+            mb.showinfo(title='Результат', message=f'1 {base_currency} равен {value_2}')
         except Exception as e:
             print(e)
 
