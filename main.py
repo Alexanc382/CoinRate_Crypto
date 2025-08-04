@@ -51,7 +51,7 @@ vs_currencies = {
 }
 
 window = Tk()
-window.title('Курсы криптовалют')
+window.title('Курс обмена криптовалют')
 # размер окна и параметры его отображения(посередине экрана)
 screenwidth = window.winfo_screenwidth()
 screenheight = window.winfo_screenheight()
@@ -59,7 +59,7 @@ width_position = screenwidth // 2 - 150
 height_position = screenheight // 2 - 150
 window.geometry(f'300x300+{width_position}+{height_position}')
 
-label_base = ttk.Label(text='Базовая валюта')
+label_base = ttk.Label(text='Базовая криптовалюта')
 label_base.grid(row=1, column=1,padx=80, pady=20)
 base_combobox = ttk.Combobox(window, values=list(currencies.keys()))
 base_combobox.grid(row=2,column=1,padx=80, pady=20)
@@ -71,7 +71,7 @@ quote_combobox = ttk.Combobox(window, values=list(vs_currencies.keys()))
 quote_combobox.grid(row=4,column=1,padx=80, pady=20)
 quote_combobox.bind('<<ComboboxSelected>>', get_quote_currency)
 
-but_result = ttk.Button(text='Получить курс валюты', command=exchange)
+but_result = ttk.Button(text='Получить курс обмена', command=exchange)
 but_result.grid(row=5,column=1,padx=80, pady=20)
 
 
