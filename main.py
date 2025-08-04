@@ -6,13 +6,11 @@ import requests
 
 def get_base_currency(event=None):  # получаем данные из первого бокса
     base_currency = base_combobox.get()
-    # print(base_currency)
     return base_currency
 
 
 def get_quote_currency(event=None): # получаем данные из второго бокса
     quote_currency = quote_combobox.get()
-    # print(quote_currency)
     return quote_currency
 
 
