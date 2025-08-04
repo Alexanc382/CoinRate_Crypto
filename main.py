@@ -3,15 +3,15 @@ from tkinter import ttk
 from tkinter import messagebox as mb
 import requests
 
-def get_base_currency(event):
+def get_base_currency(event=None):
     base_currency = base_combobox.get()
-    print(base_currency)
+    # print(base_currency)
     return base_currency
 
 
-def get_quote_currency(event):
+def get_quote_currency(event=None):
     quote_currency = quote_combobox.get()
-    print(quote_currency)
+    # print(quote_currency)
     return quote_currency
 
 
