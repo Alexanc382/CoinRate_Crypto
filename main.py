@@ -28,7 +28,7 @@ def exchange(): # получаем данные из API при нажатии �
             value_2 = list(value_1.values())[0]  # берём первое значение внутреннего словаря
             print(value_1) # показали результат значения ключа
             print(value_2)
-            mb.showinfo(title='Результат', message=f'1 {base_currency} равен {value_2}')
+            mb.showinfo(title='Результат', message=f'1 {currencies[base_currency]} равен {value_2}')
         except Exception as e:
             print(e)
 
